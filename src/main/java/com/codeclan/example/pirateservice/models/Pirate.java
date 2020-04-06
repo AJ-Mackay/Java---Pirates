@@ -19,14 +19,18 @@ public class Pirate {
     @Column(name="age")
     private int age;
 
-    public Pirate (String firstName, String lastName, int age){
+    @ManyToOne
+    @JoinColumn(name="ship_id", nullable=false)
+    private Ship ship;
+
+    public Pirate (String firstName, String lastName, int age, Ship ship){
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
+        this.ship = ship;
     }
 
-    public Pirate(){
-    }
+    public Pirate(){}
 
     public Long getId(){
         return id;
@@ -58,5 +62,13 @@ public class Pirate {
 
     public void setAge(int age){
         this.age = age;
+    }
+
+    public Ship getShip(){
+        return ship;
+    }
+
+    public void setShip(Ship ship){
+        this.ship = ship;
     }
 }
